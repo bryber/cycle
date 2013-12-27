@@ -640,7 +640,8 @@ function go(els, opts, manual, fwd) {
 	// check to see if we should stop cycling based on autostop options
 	if (!manual && !p.cyclePause && !opts.bounce &&
 		((opts.autostop && (--opts.countdown <= 0)) ||
-		(opts.nowrap && !opts.random && opts.nextSlide < opts.currSlide))) {
+		(((fwd && opts.nowrap && !opts.random && opts.nextSlide < opts.currSlide) ||
+		(!fwd && opts.nowrap && !opts.random && opts.currSlide < opts.nextSlide)))) {
 		if (opts.end)
 			opts.end(opts);
 		return;
